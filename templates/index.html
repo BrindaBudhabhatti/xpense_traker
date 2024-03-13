@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #31363F;
+            color: #EEEEEE;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #31363F;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        button {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #76ABAE;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #76ABAE;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        .total-spent {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .clear-button {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        <form action="/add_expense" method="POST">
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" min="0" step="0.01" required>
+            <button type="submit">Add Expense</button>
+        </form>
+        <h2>Expenses</h2>
+        <ul>
+            {% for expense in expenses %}
+            <li>{{ expense.description }} - ₹{{ expense.amount }}</li>
+            {% endfor %}
+        </ul>
+        <p class="total-spent">Total Money Spent: ₹{{ total_spent }}</p>
+        
+    </div>
+</body>
+</html>
